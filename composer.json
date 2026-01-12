@@ -1,0 +1,37 @@
+{
+  "name": "ifcastle/package-installer",
+  "type": "composer-plugin",
+  "description": "A Composer plugin for install IfCastle components.",
+  "license": "MIT",
+  "keywords": ["ifcastle", "package", "installer", "composer", "plugin"],
+  "autoload": {
+    "psr-4": {
+      "IfCastle\\PackageInstaller\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "IfCastle\\PackageInstaller\\": "./tests"
+    }
+  },
+  "require": {
+    "composer-plugin-api": "^2.0",
+    "ifcastle/application": "^0.8"
+  },
+  "require-dev": {
+    "composer/composer": "^2.0",
+    "ifcastle/codestyle": "^0.1",
+    "phpstan/phpstan": "^1.12",
+    "phpunit/phpunit": "^11.4"
+  },
+  "extra": {
+    "class": "IfCastle\\PackageInstaller\\Plugin",
+    "branch-alias": {
+      "dev-main": "0.3.x-dev"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit ./tests",
+    "analysis": "phpstan"
+  }
+}
