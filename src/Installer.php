@@ -144,7 +144,7 @@ final class Installer extends LibraryInstaller
     private function installOrUpdatePackage(PackageInterface $package, PackageInstallerInterface $packageInstaller, bool $isUpdate): void
     {
         try {
-            if($isUpdate) {
+            if ($isUpdate) {
                 $packageInstaller->update();
             } else {
                 $packageInstaller->install();
