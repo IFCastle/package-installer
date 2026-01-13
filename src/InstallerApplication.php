@@ -18,6 +18,7 @@ final class InstallerApplication extends ApplicationAbstract
 {
     public const string APP_CODE    = 'installer';
 
+    #[\Override]
     public function getSystemEnvironment(): SystemEnvironmentInterface
     {
         return $this->systemEnvironment;

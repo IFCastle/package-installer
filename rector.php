@@ -10,5 +10,5 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/src',
     ]);
 
-    (new RectorConfigurator())->configureSets($rectorConfig);
+    new RectorConfigurator()->configureSets($rectorConfig);
 };
