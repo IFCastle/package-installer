@@ -15,6 +15,7 @@
     }
   },
   "require": {
+    "php": ">=8.5",
     "composer-plugin-api": "^2.0",
     "ifcastle/application": "^0.8"
   },
