@@ -146,6 +146,8 @@ final class Installer extends LibraryInstaller implements DeferredTasksInterface
             throw new \RuntimeException('Failed to execute deferred tasks');
         }
 
+        $this->io->write(self::PREFIX . self::IFCASTLE . ' <info>All deferred tasks completed successfully</info>');
+
         $this->deferredTasks = [];
     }
 
