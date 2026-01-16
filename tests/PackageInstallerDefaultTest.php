@@ -119,6 +119,10 @@ class PackageInstallerDefaultTest extends TestCase
     {
         $bootloaderDir              = __DIR__ . '/bootloader';
 
+        if (!\is_dir($bootloaderDir)) {
+            return;
+        }
+
         foreach (\scandir($bootloaderDir) as $file) {
             if ($file === '.' || $file === '..') {
                 continue;
