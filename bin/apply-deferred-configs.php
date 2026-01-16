@@ -12,7 +12,7 @@ if ($argc < 3) {
 $projectDir = $argv[1];
 $tasksFile = $argv[2];
 
-// Check project directory exists
+// Check the project directory exists
 if (!\is_dir($projectDir)) {
     fwrite(STDERR, "Error: Project directory not found: {$projectDir}\n");
     exit(1);

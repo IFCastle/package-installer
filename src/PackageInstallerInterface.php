@@ -37,7 +37,8 @@ interface PackageInstallerInterface
 
     public function __construct(
         BootManagerInterface $bootManager,
-        ZeroContextInterface $zeroContext
+        ZeroContextInterface $zeroContext,
+        DeferredTasksInterface $deferredTasks
     );
 
     public function install(): void;
