@@ -13,6 +13,10 @@ use IfCastle\ServiceManager\ServiceDescriptor;
 
 final class PackageInstallerDefault implements PackageInstallerInterface
 {
+    private readonly BootManagerInterface $bootManager;
+    private readonly ZeroContextInterface $zeroContext;
+    private readonly DeferredTasksInterface $deferredTasks;
+
     /**
      * @var array<string, mixed>
      */
@@ -23,9 +27,14 @@ final class PackageInstallerDefault implements PackageInstallerInterface
     private InstallerApplication|null $installerApplication = null;
 
     public function __construct(
-        private readonly BootManagerInterface $bootManager,
-        private readonly ZeroContextInterface $zeroContext,
-    ) {}
+        BootManagerInterface $bootManager,
+        ZeroContextInterface $zeroContext,
+        DeferredTasksInterface $deferredTasks,
+    ) {
+        $this->bootManager   = $bootManager;
+        $this->zeroContext   = $zeroContext;
+        $this->deferredTasks = $deferredTasks;
+    }
 
     /**
      * @param array<string, mixed> $config
@@ -70,7 +79,18 @@ final class PackageInstallerDefault implements PackageInstallerInterface
             }
 
             if (!empty($installerConfig[self::PACKAGE][self::MAIN_CONFIG])) {
-                $this->appendMainConfig($installerConfig[self::PACKAGE][self::MAIN_CONFIG]);
+                // Defer the main config application until all packages are installed
+                $mainConfig = $installerConfig[self::PACKAGE][self::MAIN_CONFIG];
+                $packageName = $this->packageName;
+
+                $this->deferredTasks->addDeferredTask(
+                    [
+                        'type' => 'main-config',
+                        'packageName' => $packageName,
+                        'data' => $mainConfig,
+                    ],
+                    "Applying main config for package: {$packageName}"
+                );
             }
         }
 
