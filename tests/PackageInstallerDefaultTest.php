@@ -27,7 +27,8 @@ class PackageInstallerDefaultTest extends TestCase
     {
         $bootManager                = $this->instanciateBootManager();
         $zeroContext                = new ZeroContext(__DIR__);
-        $packageInstaller           = new PackageInstallerDefault($bootManager, $zeroContext);
+        $deferredTasks              = $this->createMock(DeferredTasksInterface::class);
+        $packageInstaller           = new PackageInstallerDefault($bootManager, $zeroContext, $deferredTasks);
 
         $packageInstaller->setConfig([
             PackageInstallerInterface::PACKAGE  => [
@@ -54,7 +55,8 @@ class PackageInstallerDefaultTest extends TestCase
     {
         $bootManager                = $this->instanciateBootManager();
         $zeroContext                = new ZeroContext(__DIR__);
-        $packageInstaller           = new PackageInstallerDefault($bootManager, $zeroContext);
+        $deferredTasks              = $this->createMock(DeferredTasksInterface::class);
+        $packageInstaller           = new PackageInstallerDefault($bootManager, $zeroContext, $deferredTasks);
 
         $packageInstaller->setConfig([
             PackageInstallerInterface::PACKAGE  => [
